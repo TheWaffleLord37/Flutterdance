@@ -11,14 +11,14 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
-      # Enforce 1-minute rate limit
+      # Enforce 1-hour rate limit
       - name: Rate limit check
         id: ratelimit
         run: |
           NOW=$(date +%s)
           LAST=$(cat .last_run 2>/dev/null || echo 0)
           GAP=$(( NOW - LAST ))
-          if [ $GAP -lt 60 ]; then
+          if [ $GAP -lt 3600 ]; then
             echo "Run blocked due to rate limit ($GAP seconds since last run)"
             echo "ratelimited=true" >> "$GITHUB_OUTPUT"
           else
