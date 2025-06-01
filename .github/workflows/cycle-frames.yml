@@ -64,7 +64,7 @@ jobs:
       # 5-minute delay before notifications
       - name: Wait 5 minutes
         if: steps.ratelimit.outputs.ratelimited == 'false'
-        run: sleep 300
+        run: sleep 10
 
       # Discord message for rollover (12 → 1)
       - name: Notify Discord (rollover)
